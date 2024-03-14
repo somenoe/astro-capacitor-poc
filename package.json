@@ -7,11 +7,18 @@
     "start": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "android": "npm run build && npx cap run android"
   },
   "dependencies": {
-    "astro": "^4.5.4",
     "@astrojs/check": "^0.5.9",
+    "@capacitor/android": "^5.7.2",
+    "@capacitor/core": "^5.7.2",
+    "@capacitor/ios": "^5.7.2",
+    "astro": "^4.5.4",
     "typescript": "^5.4.2"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^5.7.2"
   }
 }
