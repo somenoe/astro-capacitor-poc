@@ -1,4 +1,5 @@
 import { Camera, CameraResultType, type Photo } from "@capacitor/camera";
+import { Capacitor } from "@capacitor/core";
 import { Directory, Filesystem } from "@capacitor/filesystem";
 import { Share } from "@capacitor/share";
 import { defineCustomElements } from "@ionic/pwa-elements/loader";
@@ -6,11 +7,12 @@ defineCustomElements(window);
 
 const IMAGE_ID = "image-element";
 const imageElement = document.getElementById(IMAGE_ID) as HTMLImageElement;
+var photo: Photo;
 
 const takePicture = async () => {
-  const photo = await Camera.getPhoto({
+  photo = await Camera.getPhoto({
     quality: 90,
-    allowEditing: true,
+    allowEditing: false,
     resultType: CameraResultType.Uri,
   });
 
@@ -25,7 +27,9 @@ const takePicture = async () => {
     imageElement.src = imageUrl;
   }
 
-  console.log({ photo });
+  if (Capacitor.getPlatform() !== "web") {
+    shareButton.style.visibility = "visible";
+  }
 };
 
 const TAKE_BUTTON_ID = "take-picture-button";
@@ -33,41 +37,16 @@ const takeButton = document.getElementById(TAKE_BUTTON_ID) as HTMLButtonElement;
 takeButton.addEventListener("click", takePicture);
 
 const sharePicture = async () => {
-  await Filesystem.requestPermissions();
-
-  // Share local file using url parameter
-  const photo = await Camera.getPhoto({
-    quality: 90,
-    allowEditing: false,
-    resultType: CameraResultType.Base64,
-  });
-  if (!photo || !photo.base64String) {
-    alert("No photo found");
-    return;
-  }
-  const RECEIPT_NAME = "Receipt N:123.png";
-
-  await Filesystem.writeFile({
-    path: RECEIPT_NAME,
-    data: photo.base64String,
-    directory: Directory.Cache,
-  });
-
-  let fileResult = await Filesystem.getUri({
-    directory: Directory.Cache,
-    path: RECEIPT_NAME,
-  });
-
+  // Share multiple files using files parameter
   await Share.share({
-    title: RECEIPT_NAME,
-    text: RECEIPT_NAME,
-    files: [fileResult.uri],
+    files: [photo.path!],
   });
 };
 const SHARE_BUTTON_ID = "share-picture-button";
 const shareButton = document.getElementById(
   SHARE_BUTTON_ID
 ) as HTMLButtonElement;
+
 shareButton.addEventListener("click", sharePicture);
 
 const shareDemo = async () => {
