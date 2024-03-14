@@ -14,8 +14,10 @@
   "dependencies": {
     "@astrojs/check": "^0.5.9",
     "@capacitor/android": "^5.7.2",
+    "@capacitor/camera": "^5.0.9",
     "@capacitor/core": "^5.7.2",
     "@capacitor/ios": "^5.7.2",
+    "@ionic/pwa-elements": "^3.2.2",
     "astro": "^4.5.4",
     "typescript": "^5.4.2"
   },
