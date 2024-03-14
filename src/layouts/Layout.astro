@@ -43,5 +43,9 @@ const { title } = Astro.props;
   <body>
     <slot />
     <ReloadPrompt />
+    <script>
+      import { defineCustomElements } from "@ionic/pwa-elements/loader";
+      defineCustomElements(window);
+    </script>
   </body>
 </html>

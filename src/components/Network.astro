@@ -1,0 +1,28 @@
+---
+import { NETWORK_STATUS_ID } from "./ids";
+---
+
+<p>
+  current network status: <span id={NETWORK_STATUS_ID}></span>
+</p>
+<script>
+  import { NETWORK_STATUS_ID } from "./ids";
+  import { Network } from "@capacitor/network";
+
+  Network.addListener("networkStatusChange", (status) => {
+    if (!status.connected) {
+      alert("No internet connection!");
+    } else {
+      alert("Connected! with: " + status.connectionType);
+    }
+  });
+
+  async function checkNetwork() {
+    const status = await Network.getStatus();
+    const networkStatus = document.getElementById(
+      NETWORK_STATUS_ID
+    ) as HTMLSpanElement;
+    networkStatus.innerText = status.connectionType;
+  }
+  checkNetwork();
+</script>

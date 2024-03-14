@@ -1,27 +1,17 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Toast from "../components/Toast.astro";
+import Network from "../components/Network.astro";
+import Camera from "../components/Camera.astro";
 ---
 
 <Layout title="Welcome to Astro.">
   <header class="pt-[env(safe-area-inset-top)]"></header>
-  <main class="container mx-auto mt-6 px-3">
-    <h1 class="text-4xl text-center uppercase font-bold">camera & share</h1>
-    <hr class="my-6" />
-
-    <img class="w-full max-h-[300px] mb-3 object-contain" id="image-element" />
-    <div class="flex space-x-3">
-      <button class="btn btn-primary" id="take-picture-button"
-        >Take picture</button
-      >
-      <button class="btn btn-outline hidden" id="share-picture-button"
-        >Share picture</button
-      >
-    </div>
-    <hr class="my-6" />
-    <button class="btn btn-primary" id="share-demo">Share demo</button>
-
-    <script src="../camera.ts"></script>
+  <main class="container mx-auto mt-6 px-3 space-y-3">
+    <Camera />
+    <hr />
+    <Network />
+    <hr />
     <Toast />
   </main>
 </Layout>
