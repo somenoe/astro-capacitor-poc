@@ -2,6 +2,10 @@
   "extends": "astro/tsconfigs/strict",
   "exclude": ["**/ios/**", "**/android/**", "**/dist/**"],
   "compilerOptions": {
-    "types": ["vite-plugin-pwa/client", "vite-plugin-pwa/info"]
+    "types": [
+      "vite-plugin-pwa/client",
+      "vite-plugin-pwa/info",
+      "vite-plugin-pwa/pwa-assets"
+    ]
   }
 }
