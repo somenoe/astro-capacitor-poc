@@ -28,7 +28,7 @@ const takePicture = async () => {
   }
 
   if (Capacitor.getPlatform() !== "web") {
-    shareButton.style.visibility = "visible";
+    shareButton.classList.remove("hidden");
   }
 };
 
