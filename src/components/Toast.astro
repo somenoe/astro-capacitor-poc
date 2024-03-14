@@ -1,0 +1,26 @@
+---
+import { TOAST_BUTTON_ID } from "./ids";
+---
+
+<button class="btn" onclick="alert('Hello World!')">Alert</button>
+<button class="btn" id={TOAST_BUTTON_ID}>Toast</button>
+
+<script>
+  import { Toast } from "@capacitor/toast";
+  import { TOAST_BUTTON_ID } from "./ids";
+
+  const showToast = async () => {
+    // BUG: this function run but posiotion is not changed
+    // BUG: toast is only show on web
+    await Toast.show({
+      text: "Hello World!",
+      duration: "long",
+      position: "center",
+    });
+    console.log("Toast has been shown");
+  };
+  const toastButton = document.getElementById(
+    TOAST_BUTTON_ID
+  ) as HTMLButtonElement;
+  toastButton.addEventListener("click", showToast);
+</script>

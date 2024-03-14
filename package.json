@@ -21,6 +21,7 @@
     "@capacitor/filesystem": "^5.2.1",
     "@capacitor/ios": "^5.7.2",
     "@capacitor/share": "^5.0.7",
+    "@capacitor/toast": "^5.0.7",
     "@ionic/pwa-elements": "^3.2.2",
     "astro": "^4.5.4",
     "tailwindcss": "^3.4.1",

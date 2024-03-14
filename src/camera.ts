@@ -1,6 +1,4 @@
 import { Camera, CameraResultType, type Photo } from "@capacitor/camera";
-import { Capacitor } from "@capacitor/core";
-import { Directory, Filesystem } from "@capacitor/filesystem";
 import { Share } from "@capacitor/share";
 import { defineCustomElements } from "@ionic/pwa-elements/loader";
 defineCustomElements(window);
@@ -27,9 +25,7 @@ const takePicture = async () => {
     imageElement.src = imageUrl;
   }
 
-  if (Capacitor.getPlatform() !== "web") {
-    shareButton.classList.remove("hidden");
-  }
+  shareButton.classList.remove("hidden");
 };
 
 const TAKE_BUTTON_ID = "take-picture-button";
@@ -37,10 +33,13 @@ const takeButton = document.getElementById(TAKE_BUTTON_ID) as HTMLButtonElement;
 takeButton.addEventListener("click", takePicture);
 
 const sharePicture = async () => {
-  // Share multiple files using files parameter
-  await Share.share({
-    files: [photo.path!],
-  });
+  try {
+    await Share.share({
+      files: [photo.path!],
+    });
+  } catch (error) {
+    alert(error);
+  }
 };
 const SHARE_BUTTON_ID = "share-picture-button";
 const shareButton = document.getElementById(
