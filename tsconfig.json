@@ -1,4 +1,7 @@
 {
   "extends": "astro/tsconfigs/strict",
-  "exclude": ["**/android/**"]
+  "exclude": ["**/android/**", "**/dist/**"],
+  "compilerOptions": {
+    "types": ["vite-plugin-pwa/client", "vite-plugin-pwa/info"]
+  }
 }

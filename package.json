@@ -8,7 +8,8 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "android": "npm run build && npx cap run android"
+    "android": "npx cap run android",
+    "generate-pwa-assets": "pwa-assets-generator --preset minimal-2023 public/favicon.svg"
   },
   "dependencies": {
     "@astrojs/check": "^0.5.9",
@@ -19,6 +20,8 @@
     "typescript": "^5.4.2"
   },
   "devDependencies": {
-    "@capacitor/cli": "^5.7.2"
+    "@capacitor/cli": "^5.7.2",
+    "@vite-pwa/assets-generator": "^0.2.4",
+    "@vite-pwa/astro": "^0.3.0"
   }
 }
