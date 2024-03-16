@@ -11,10 +11,9 @@ import { TOAST_BUTTON_ID } from "./ids";
 
   const showToast = async () => {
     // BUG: this function run but posiotion is not changed
-    // BUG: toast is only show on web
     await Toast.show({
       text: "Hello World!",
-      duration: "long",
+      duration: "short",
       position: "center",
     });
     console.log("Toast has been shown");

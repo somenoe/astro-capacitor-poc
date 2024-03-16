@@ -1,0 +1,21 @@
+---
+import {
+  TAKE_BUTTON_ID,
+  SHARE_BUTTON_ID,
+  SHARE_DEMO_ID,
+  IMAGE_ID,
+} from "../ids.ts";
+---
+
+<h1 class="text-4xl text-center uppercase font-bold">camera & share</h1>
+
+<img class="w-full max-h-[300px] mb-3 object-contain" id={IMAGE_ID} />
+
+<div class="flex space-x-3">
+  <button class="btn btn-primary" id={TAKE_BUTTON_ID}>Take picture</button>
+  <button class="btn btn-outline" id={SHARE_BUTTON_ID}>Share picture</button>
+</div>
+<hr class="my-6" />
+<button class="btn btn-primary" id={SHARE_DEMO_ID}>Share demo</button>
+
+<script src="./index.ts"></script>

@@ -6,14 +6,23 @@ import { NETWORK_STATUS_ID } from "./ids";
   current network status: <span id={NETWORK_STATUS_ID}></span>
 </p>
 <script>
-  import { NETWORK_STATUS_ID } from "./ids";
   import { Network } from "@capacitor/network";
+  import { NETWORK_STATUS_ID } from "./ids";
+  import { Toast } from "@capacitor/toast";
 
-  Network.addListener("networkStatusChange", (status) => {
+  Network.addListener("networkStatusChange", async (status) => {
     if (!status.connected) {
-      alert("No internet connection!");
+      await Toast.show({
+        text: "No internet connection!",
+        duration: "short",
+        position: "center",
+      });
     } else {
-      alert("Connected! with: " + status.connectionType);
+      await Toast.show({
+        text: "Connected!",
+        duration: "short",
+        position: "center",
+      });
     }
   });
 
