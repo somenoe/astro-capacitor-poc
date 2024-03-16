@@ -1,0 +1,96 @@
+---
+import { Image } from "astro:assets";
+import catImage from "../../images/sunglasses-siamese-cat.png";
+---
+
+<h1 class="text-xl text-center uppercase font-bold">save file</h1>
+
+<Image
+  class="w-full max-h-[300px] mb-3 object-contain"
+  id="cat-image"
+  src={catImage}
+  alt="sunglasses cat"
+/>
+
+<button class="btn btn-primary" id="save-image-button">save image</button>
+<button class="btn btn-secondary" id="save-example-button"
+  >write sample text file</button
+>
+
+<script>
+  import { Filesystem, Directory, Encoding } from "@capacitor/filesystem";
+  import { Toast } from "@capacitor/toast";
+  import { Capacitor } from "@capacitor/core";
+
+  const writeTestFile = async () => {
+    try {
+      await Filesystem.writeFile({
+        path: "secrets/text.txt",
+        data: "This is a test",
+        directory: Directory.Documents,
+        encoding: Encoding.UTF8,
+        recursive: true,
+      });
+      await Toast.show({
+        text: "File saved",
+      });
+    } catch (error) {
+      alert(error);
+    }
+  };
+  const saveExampleButton = document.getElementById(
+    "save-example-button"
+  ) as HTMLButtonElement;
+  saveExampleButton.addEventListener("click", writeTestFile);
+
+  function saveImageOnWeb(image: HTMLImageElement, fileName: string) {
+    const link = document.createElement("a");
+    link.download = fileName;
+    link.href = image.src;
+    link.click();
+  }
+
+  // helper function
+  const convertBlobToBase64 = (blob: Blob) =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onerror = reject;
+      reader.onload = () => {
+        resolve(reader.result);
+      };
+      reader.readAsDataURL(blob);
+    });
+
+  async function saveImage() {
+    const image = document.getElementById("cat-image") as HTMLImageElement;
+    const blob = await fetch(image.src).then((res) => res.blob());
+    const base64Data = (await convertBlobToBase64(blob)) as string;
+
+    const fileName = "sunglasses-siamese-cat.png";
+    try {
+      if (!Capacitor.isNativePlatform()) {
+        saveImageOnWeb(image, fileName);
+        await Toast.show({
+          text: "File saved (web)",
+        });
+      } else {
+        await Filesystem.writeFile({
+          path: "images/" + fileName,
+          data: base64Data,
+          directory: Directory.Documents,
+          recursive: true,
+        });
+        await Toast.show({
+          text: "File saved (native)",
+        });
+      }
+    } catch (error) {
+      alert(error);
+    }
+  }
+
+  const saveImageButton = document.getElementById(
+    "save-image-button"
+  ) as HTMLButtonElement;
+  saveImageButton.addEventListener("click", saveImage);
+</script>

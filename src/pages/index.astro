@@ -3,15 +3,18 @@ import Layout from "../layouts/Layout.astro";
 import Toast from "../components/Toast.astro";
 import Network from "../components/Network.astro";
 import Camera from "../components/camera/Camera.astro";
+import SaveFile from "../components/files/SaveFile.astro";
 ---
 
 <Layout title="Welcome to Astro.">
   <header class="pt-[env(safe-area-inset-top)]"></header>
-  <main class="container mx-auto mt-6 px-3 space-y-3">
+  <main class="mb-6 container mx-auto mt-6 px-3 space-y-3">
     <Camera />
     <hr />
     <Network />
     <hr />
     <Toast />
+    <hr />
+    <SaveFile />
   </main>
 </Layout>
