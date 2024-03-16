@@ -5,11 +5,14 @@ import Network from "../components/Network.astro";
 import Camera from "../components/camera/Camera.astro";
 import SaveFile from "../components/files/SaveFile.astro";
 import Map from "../components/map/Map.astro";
+import Chart from "../components/chart/Chart.astro";
 ---
 
 <Layout title="Welcome to Astro.">
   <header class="pt-[env(safe-area-inset-top)]"></header>
   <main class="mb-6 container mx-auto mt-6 px-3 space-y-3">
+    <Chart />
+    <hr />
     <Map />
     <hr />
     <Camera />
