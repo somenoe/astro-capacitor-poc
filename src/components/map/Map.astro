@@ -1,0 +1,43 @@
+---
+import Leaflet from "./Leaflet.astro";
+
+const markersLocation: [string, number, number][] = [
+  ["CentralWorld", 13.746, 100.5393],
+  ["MBK Center", 13.7444, 100.5302],
+  ["Siam Paragon", 13.7463, 100.5347],
+  ["Terminal 21", 13.7373, 100.5609],
+  ["Emporium and EmQuartier", 13.7296, 100.5692],
+];
+---
+
+<h2 class="text-xl">Leaflet Map</h2>
+<h3 class="text-lg font-semibold">Your current location</h3>
+
+<div id="current-map">
+  <p>
+    <div>
+      Longitude:
+      <span id="latitude"></span>
+    </div>
+    <div>
+      Latitude:
+      <span id="longitude"></span>
+    </div>
+  </p>
+  <div id="user-map" class="h-[300px]"></div>
+</div>
+<div>
+  <h3 class="text-lg font-semibold">Malls in Bangkok</h3>
+  <Leaflet
+    container="mall-map-container"
+    latitude={markersLocation[0][1]}
+    longitude={markersLocation[0][2]}
+    zoom={13}
+    tileLayer="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+    attribution="© <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors"
+    containerstyle="height: 300px;"
+    locations={markersLocation}
+  />
+</div>
+
+<script src="./map.ts"></script>

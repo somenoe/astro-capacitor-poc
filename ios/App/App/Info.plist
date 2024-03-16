@@ -51,5 +51,9 @@
 		<string>Privacy - Photo Library Additions Usage Description</string>
 		<key>NSPhotoLibraryUsageDescription</key>
 		<string>Privacy - Photo Library Usage Description</string>
+		<key>NSLocationAlwaysUsageDescription</key>
+		<string>Your description for Location Always Usage</string>
+		<key>NSLocationWhenInUseUsageDescription</key>
+		<string>Your description for Location When In Use Usage</string>
 	</dict>
 </plist>

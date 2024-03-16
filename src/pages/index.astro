@@ -4,35 +4,13 @@ import Toast from "../components/Toast.astro";
 import Network from "../components/Network.astro";
 import Camera from "../components/camera/Camera.astro";
 import SaveFile from "../components/files/SaveFile.astro";
-import LeafletMap from "../components/map/Leaflet.astro";
-
-const markersLocation: [string, number, number][] = [
-  ["CentralWorld", 13.746, 100.5393],
-  ["MBK Center", 13.7444, 100.5302],
-  ["Siam Paragon", 13.7463, 100.5347],
-  ["Terminal 21", 13.7373, 100.5609],
-  ["Emporium and EmQuartier", 13.7296, 100.5692],
-];
+import Map from "../components/map/Map.astro";
 ---
 
 <Layout title="Welcome to Astro.">
   <header class="pt-[env(safe-area-inset-top)]"></header>
   <main class="mb-6 container mx-auto mt-6 px-3 space-y-3">
-    <h2 class="text-xl pb-3">Leaflet Map</h2>
-    <div>
-      <LeafletMap
-        container="leafletmap"
-        latitude={markersLocation[0][1]}
-        longitude={markersLocation[0][2]}
-        zoom={13}
-        tileLayer="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        attribution="© <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors"
-        containerstyle="height: 300px;"
-        locations={markersLocation}
-      />
-    </div>
-    <p>Raster tiles from OpenStreetMap</p>
-
+    <Map />
     <hr />
     <Camera />
     <hr />
