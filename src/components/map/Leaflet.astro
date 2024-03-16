@@ -1,0 +1,92 @@
+---
+import "leaflet/dist/leaflet.css";
+export interface Props {
+  latitude: number;
+  longitude: number;
+  zoom: number;
+  /** the DOM ID of a <div> element */
+  container: string;
+  /** https://leafletjs.com/reference.html#tilelayer */
+  tileLayer: string;
+  /** Most tile servers require attribution. */
+  attribution: string;
+  containerstyle?: string;
+  locations?: [string, number, number][];
+}
+
+const {
+  latitude,
+  longitude,
+  zoom,
+  container,
+  tileLayer,
+  attribution,
+  containerstyle = "height: 61.8vh",
+  locations,
+} = Astro.props;
+
+// src: https://github.com/roblabs/maps-withastro
+---
+
+<leaflet-map
+  data-latitude={latitude}
+  data-longitude={longitude}
+  data-zoom={zoom}
+  data-container={container}
+  data-tiles={tileLayer}
+  data-attribution={attribution}
+  data-containerstyle={containerstyle}
+  data-locations={JSON.stringify(locations)}
+>
+  <div id={container} style={containerstyle}></div>
+  <script>
+    import L from "leaflet";
+
+    class LeafletMap extends HTMLElement {
+      constructor() {
+        super();
+
+        const latlng: [number, number] = [
+          Number(this.dataset.latitude),
+          Number(this.dataset.longitude),
+        ];
+
+        var map = L.map(this.dataset.container).setView(
+          latlng,
+          Number(this.dataset.zoom)
+        );
+        L.tileLayer(this.dataset.tiles, {
+          attribution: this.dataset.attribution,
+        }).addTo(map);
+
+        const iconWidth = 269;
+        const iconHeight = 384;
+        const reducedFactor = 8;
+
+        // src: https://leafletjs.com/examples/custom-icons/
+        const pinIcon = L.icon({
+          iconUrl: "pin.png",
+
+          iconSize: [iconWidth / reducedFactor, iconHeight / reducedFactor], // size of the icon
+          // shadowSize: [50, 64], // size of the shadow
+          iconAnchor: [
+            iconWidth / reducedFactor / 2,
+            iconHeight / reducedFactor,
+          ], // point of the icon which will correspond to marker's location
+          // shadowAnchor: [4, 62], // the same for the shadow
+          popupAnchor: [0, -(iconHeight / reducedFactor + 3)], // point from which the popup should open relative to the iconAnchor
+        });
+        if (this.dataset.locations) {
+          const locations = JSON.parse(this.dataset.locations);
+          for (var i = 0; i < locations.length; i++) {
+            L.marker([locations[i][1], locations[i][2]], { icon: pinIcon })
+              .addTo(map)
+              .bindPopup(locations[i][0]);
+          }
+        }
+      }
+    }
+
+    customElements.define("leaflet-map", LeafletMap);
+  </script>
+</leaflet-map>
