@@ -7,24 +7,39 @@ import SaveFile from "../components/files/SaveFile.astro";
 import Map from "../components/map/Map.astro";
 import Chart from "../components/chart/Chart.astro";
 import Storage from "../components/storage/Storage.astro";
+import NavButton from "../components/NavButton.astro";
 ---
 
 <Layout title="Welcome to Astro.">
   <header class="pt-[env(safe-area-inset-top)]"></header>
-  <main class="mb-6 container mx-auto mt-6 px-3 space-y-3">
-    <Storage />
-    <hr />
-    <Chart />
-    <hr />
-    <Map />
-    <hr />
-    <Camera />
-    <hr />
-    <Network />
-    <hr />
-    <Toast />
-    <hr />
-    <SaveFile />
-    <hr />
+  <main x-data="{tab: 'map'}" class="mb-6 container mx-auto mt-6 px-3 pb-12">
+    <div>
+      <div x-show="tab === 'map'">
+        <Map />
+      </div>
+      <div x-show="tab === 'chart'">
+        <Chart />
+      </div>
+      <div x-show="tab === 'storage'">
+        <Storage />
+        <hr />
+        <SaveFile />
+      </div>
+      <div x-show="tab === 'camera'">
+        <Camera />
+      </div>
+      <div x-show="tab === 'network'">
+        <Network />
+        <hr />
+        <Toast />
+      </div>
+    </div>
+    <div class="btm-nav z-[20000000] bg-base-200">
+      <NavButton name="map" icon="ic:round-map" />
+      <NavButton name="chart" icon="ic:round-stacked-line-chart" />
+      <NavButton name="storage" icon="ic:round-storage" />
+      <NavButton name="camera" icon="ic:round-camera-alt" />
+      <NavButton name="network" icon="ic:round-wifi" />
+    </div>
   </main>
 </Layout>

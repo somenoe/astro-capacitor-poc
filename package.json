@@ -40,8 +40,10 @@
   "devDependencies": {
     "@capacitor/cli": "^5.7.2",
     "@faker-js/faker": "^8.4.1",
+    "@iconify-json/ic": "^1.1.17",
     "@vite-pwa/assets-generator": "^0.2.4",
     "@vite-pwa/astro": "^0.3.0",
+    "astro-icon": "^1.1.0",
     "daisyui": "^4.7.3"
   }
 }

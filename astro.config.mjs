@@ -1,14 +1,17 @@
 import { defineConfig } from "astro/config";
 import AstroPWA from "@vite-pwa/astro";
 import tailwind from "@astrojs/tailwind";
-
 import alpinejs from "@astrojs/alpinejs";
+
+import icon from "astro-icon";
 
 // https://astro.build/config
 export default defineConfig({
   integrations: [
     tailwind(),
-    alpinejs({ entrypoint: "/src/entrypoint" }),
+    alpinejs({
+      entrypoint: "/src/entrypoint",
+    }),
     AstroPWA({
       base: "/",
       scope: "/",
@@ -59,6 +62,12 @@ export default defineConfig({
       workbox: {
         navigateFallback: "/",
         globPatterns: ["**/*.{css,js,html,svg,png,ico,txt}"],
+      },
+    }),
+    icon({
+      iconDir: "src/icons",
+      include: {
+        ic: ["*"],
       },
     }),
   ],

@@ -1,0 +1,15 @@
+---
+interface Props {
+  name: string;
+  icon: string;
+}
+
+import { Icon } from "astro-icon/components";
+
+const { name, icon } = Astro.props;
+---
+
+<button x-on:click={`tab = '${name}'`} :class={`tab === '${name}' && 'active'`}>
+  <Icon name={icon} />
+  <span class="btm-nav-label capitalize">{name}</span>
+</button>

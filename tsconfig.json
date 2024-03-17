@@ -5,7 +5,8 @@
     "types": [
       "vite-plugin-pwa/client",
       "vite-plugin-pwa/info",
-      "vite-plugin-pwa/pwa-assets"
+      "vite-plugin-pwa/pwa-assets",
+      "astro-icon"
     ]
   }
 }
