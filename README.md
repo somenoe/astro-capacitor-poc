@@ -1,16 +1,40 @@
-# Astro Starter Kit: Basics
+# Astro + Capacitor (Proof of Concept)
 
-```sh
-npm create astro@latest -- --template basics
-```
+I have conducted a proof of concept testing various features of Capacitor utilizing the Astro framework.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+### Concepts
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+The following concepts have been explored and implemented successfully:
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+- [x] Network
+- [x] Camera
+- [x] Filesystem
+- [x] Geolocation
+- [x] Toast
+- [x] Share
+- [x] Map
+- [x] Chart
+- [x] Build: Android
+- [x] Build: PWA
+- [ ] Build: iOS
+- [ ] Push Notification
+- [ ] Local Notification
+- [ ] Log In with Social Media Provider
+- [ ] Chart: Candlestick
+
+## Tech Stack
+
+Below is the technology stack utilized in this project:
+
+- [Capacitor](https://capacitorjs.com/)
+- [Astro](https://astro.build/)
+- [Alpine.js](https://alpinejs.dev/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Daisy UI](https://daisyui.com/)
+- [Iconify](https://iconify.design/)
+- [Leaflet Map](https://leafletjs.com/)
+- [Chart.js](https://www.chartjs.org/)
+- [Vite PWA](https://vite-pwa-org.netlify.app/)
 
 ## 🚀 Project Structure
 
