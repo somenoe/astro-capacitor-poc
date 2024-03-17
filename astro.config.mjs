@@ -16,11 +16,6 @@ export default defineConfig({
       base: "/",
       scope: "/",
       registerType: "autoUpdate",
-      includeAssets: [
-        "favicon.ico",
-        "apple-touch-icon-180x180.png",
-        "maskable-icon-512x512.png",
-      ],
       manifest: {
         name: "My Awesome App",
         short_name: "MyApp",
@@ -62,6 +57,7 @@ export default defineConfig({
       workbox: {
         navigateFallback: "/",
         globPatterns: ["**/*.{css,js,html,svg,png,ico,txt}"],
+        maximumFileSizeToCacheInBytes: 15 * 1024 * 1024,
       },
     }),
     icon({
