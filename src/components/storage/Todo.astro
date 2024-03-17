@@ -1,0 +1,55 @@
+<div x-data="xtodo" class="flex gap-6 flex-col lg:grid lg:grid-cols-2">
+  <div class="w-full gap-3 flex flex-col">
+    <h2 class="text-lg font-semibold"># Todo</h2>
+    <label class="form-control w-full">
+      <div class="label">
+        <span class="label-text">Task</span>
+      </div>
+      <input
+        x-model="newTask"
+        type="text"
+        placeholder="Enter task name"
+        class="input input-bordered w-full"
+      />
+    </label>
+    <label class="form-control w-full">
+      <div class="label">
+        <span class="label-text">Detail</span>
+      </div>
+      <textarea
+        x-model="newDetail"
+        class="textarea textarea-bordered"
+        placeholder="Enter detail"></textarea>
+    </label>
+    <button class="btn btn-primary w-full" @click="addTodo">Add Task</button>
+  </div>
+  <div class="overflow-x-auto">
+    <table class="table table-pin-rows table-pin-cols">
+      <thead>
+        <tr>
+          <th>#</th>
+          <td>Task</td>
+          <td>Detail</td>
+          <th class="text-center">🗑️</th>
+        </tr>
+      </thead>
+      <tbody>
+        <template x-for="(value, index) in todos">
+          <tr>
+            <th x-text="index+1"></th>
+            <td x-text="value.task"></td>
+            <td class="line-clamp-3 hover:line-clamp-none" x-text="value.detail"
+            ></td>
+            <th class="text-center">
+              <button
+                class="btn btn-xs btn-outline btn-error"
+                @click="deleteTodo(value.id)">ลบ</button
+              >
+            </th>
+          </tr>
+        </template>
+      </tbody>
+    </table>
+  </div>
+  <script src="./todo.ts"></script>
+</div>

@@ -1,0 +1,13 @@
+<div x-data="xcount">
+  <h2 class="text-lg font-semibold"># demo count</h2>
+  <div class="my-3 gap-3 inline-flex items-center">
+    <button class="btn btn-outline btn-error btn-sm" @click="minusOne">
+      -1
+    </button>
+    Count: <strong x-text="count"></strong>
+    <button class="btn btn-outline btn-primary btn-sm" @click="addOne">
+      +1
+    </button>
+  </div>
+</div>
+<script src="./count.ts"></script>

@@ -23,6 +23,7 @@
     "@capacitor/geolocation": "^5.0.7",
     "@capacitor/ios": "^5.7.2",
     "@capacitor/network": "^5.0.7",
+    "@capacitor/preferences": "^5.0.7",
     "@capacitor/share": "^5.0.7",
     "@capacitor/toast": "^5.0.7",
     "@ionic/pwa-elements": "^3.2.2",
@@ -38,6 +39,7 @@
   },
   "devDependencies": {
     "@capacitor/cli": "^5.7.2",
+    "@faker-js/faker": "^8.4.1",
     "@vite-pwa/assets-generator": "^0.2.4",
     "@vite-pwa/astro": "^0.3.0",
     "daisyui": "^4.7.3"
